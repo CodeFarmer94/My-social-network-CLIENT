@@ -1,0 +1,7 @@
+.liked{
+    color:rgb(2, 203, 102) !important
+}
+.liked span{
+    color: red;
+    padding-bottom: 0.3rem;
+}

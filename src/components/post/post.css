@@ -1,0 +1,51 @@
+.post{
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 1rem 0.8rem 0.2rem 0.8rem;
+}
+.post-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.post-header h4{
+    margin: 0;
+    font-size: 1rem;
+}
+.post-header p{
+    margin:0;
+}
+
+.post-footer-btns{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
+    border-top: 1px solid rgb(197, 195, 195);
+    border-bottom: 1px solid rgb(197, 195, 195);
+    margin: 0.5rem 0;
+}
+.post-footer button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 33%;
+    border-radius:5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    gap:0.5rem;
+    color: rgb(37, 44, 113)
+}
+.post-footer button:hover{
+    background-color: rgb(244, 244, 244);
+}
+.post-icon{
+    font-size: 1.5rem;
+}

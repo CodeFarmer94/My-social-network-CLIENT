@@ -1,0 +1,19 @@
+.App{
+   min-height: 100vh;
+   min-width: 100vw;
+   background-color: rgb(235, 235, 235);
+}
+*{
+    margin: 0;
+    padding: 0;
+   
+}
+ul{
+    list-style: none;
+    padding-left: 0
+}
+/* Reset margins to 0 for common elements */
+p, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0 !important;
+  }
+  

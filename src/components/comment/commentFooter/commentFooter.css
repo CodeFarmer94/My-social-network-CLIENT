@@ -1,0 +1,31 @@
+.footer-btn{
+
+    margin-left:1rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: rgba(14, 10, 135, 0.651);
+    cursor: pointer;
+}
+.footer-btn:hover{
+   color: rgba(19, 13, 174, 0.651);
+    text-decoration: underline;
+}
+
+.comment-footer{
+    margin-left: 3rem;
+    margin-bottom:0.3rem;
+    display: flex;
+    flex-direction: column;
+}
+.comment-footer-btns{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.comment-footer-btns p{
+    display: flex;
+    align-items: center;
+    gap:0.2rem
+}

@@ -1,0 +1,61 @@
+.profile-info{
+    width:100%;
+    
+}
+.profile-info-box li{
+    display: flex;
+    align-items: center;
+    min-height: 3rem;
+}
+.profile-info-box{
+    width: 100%;
+    max-height: 420px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+    padding:1rem;
+}
+.profile-info-box h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.profile-info-box p{
+   margin-bottom: 0;
+   font-weight: 400;
+   cursor: pointer;
+    
+}
+.io-icon{
+    
+    color: rgba(11, 3, 90, 0.749);
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    align-self: auto;
+}
+.io-icon-person{
+    color: rgba(11, 3, 90, 0.749);
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+}
+ul{
+    padding-left:0;
+}
+.edit-details-button{
+    display: block;
+    margin: auto;
+    background-color: rgba(15, 10, 144, 0.651);
+    color:white;
+    width: 90%;
+    border-radius: 5px;
+    padding: 0.2rem;
+    border: none;
+    font-weight: 500;
+
+}
+.edit-details-button:hover{
+    background-color: rgba(26, 20, 211, 0.651);
+    color:white;
+    
+}

@@ -1,0 +1,26 @@
+.comment-form header input{
+    width: 100%;
+    border-radius: 10px;
+    background-color: inherit;
+    color: rgb(26, 26, 26);
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    outline: none;
+}
+.comment-form header {
+background-color: rgb(244, 244, 244);
+border-radius: 5px;
+margin-bottom: 0.5rem;
+display: flex;
+}
+
+.comment-form header button{
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin: 0 1rem;
+    width: 2rem;
+    color: rgba(62, 46, 132, 0.73);
+}

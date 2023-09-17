@@ -1,0 +1,11 @@
+.show-more{
+    color:rgb(114, 114, 114);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding-bottom: 0.3rem;
+}
+.show-more:hover{
+    color: rgb(62, 46, 132);
+    text-decoration: underline;
+}

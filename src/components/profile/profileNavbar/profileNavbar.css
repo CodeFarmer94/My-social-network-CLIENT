@@ -1,0 +1,22 @@
+.profile-navbar ul{
+    list-style: none;
+    display: flex;
+    gap:1rem;
+    width: 60%;
+    justify-content: space-between;
+    font-weight: 700;
+    color:#5e5e5e
+}
+
+.profile-navbar{
+    width:100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-top: 2px solid #ccc;
+}
+
+@media (max-width:'768px'){
+   .profile-navbar{
+    margin-top: 5rem;
+   }
+}

@@ -1,0 +1,80 @@
+.settings-group{
+    display: flex;
+    gap:0.5rem;
+   
+    width: 100%;
+}
+.group-title{
+   margin-bottom: 0.7rem;
+}
+.settings-group-container{
+    padding-bottom:1.5rem;
+    border-bottom: 1px solid gray;
+}
+.settings-group-container input{
+    
+    margin-left:0;
+    padding:0 0.5rem;
+}
+.settings-group-container  button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding:0.3rem;
+    border-radius: 0px;
+    min-width: 5rem;
+    font-weight: bold;
+   
+}
+#show-btn{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 1px;
+}
+
+#edit-btn{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px; 
+    border-left: 1px;
+}
+.setting-checked{
+
+    background-color: #3f51b5;
+    color: white;
+}
+.setting-disabled{
+    background-color: rgb(107, 107, 107);
+    color: rgb(252, 252, 252);
+}
+
+.detail-value{
+   
+    border: 1px solid #3f51b5;
+    min-width:90%;
+    font-size: 1.1rem;
+    color: black;
+    display: inline-block;
+    padding: 0 1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+   
+   
+    background-color: whitesmoke;
+   
+}
+.setting-head{
+    display: flex;
+    align-items: center;
+}
+.add-setting{
+    display: flex;
+    margin-top:0.8rem;
+}
+#add-icon{
+    font-size: 1.4rem;
+    color:#3f51b5;
+    margin-left: 0.5rem
+}
+ 

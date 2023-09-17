@@ -1,0 +1,70 @@
+#selected-image{
+    width: 300px;
+    height: 300px;
+    display: block;
+    margin:auto;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.upload-image input[type="file"]{
+  
+        display: block;
+        width: 350px;
+        max-width: 100%;
+        color: #444;
+        padding: 5px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #555;
+        margin: 1rem 1rem 1rem 1rem;
+       
+     
+}
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 5px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+  }
+
+.upload-input-group{
+    position: relative;
+    margin: 1rem;
+}
+.upload-image-footer{
+    display: flex;
+    justify-content: flex-end;
+    padding-top:1rem;
+    margin-top:1rem;
+    gap:1rem;
+    border-top: 1px solid #e4e4e4;
+}
+
+.upload-warning{
+  margin: 1rem 2rem;
+  color: #1658cad0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:0.5rem;
+}
+h5{
+  margin-bottom:0;
+}
+
+.change-avatar-btn{
+  width: 80%;
+  margin:auto;
+  display: block;
+}
