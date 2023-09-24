@@ -14,10 +14,6 @@ export default function CommentFooter({postId, parentId, commentId, commentLikes
         setIsLiked(bool);
     }, 
     [commentLikes]);
-    
-
-    console.log(isLiked)
-
 
     const [ showCreateComment, setShowCreateComment ] = useState(false);
     const toggleCreateComment = () => {
@@ -32,7 +28,12 @@ export default function CommentFooter({postId, parentId, commentId, commentLikes
                 <CommentLike  commentId={commentId} isLiked={isLiked}/>
             </div>
            
-            {showCreateComment && <CreateComment postId={postId} parentId={parentId} />}
+            {showCreateComment && <CreateComment
+             postId={postId}
+            parentId={parentId}
+            showCreateComment={showCreateComment}
+            toggleCreateComment={toggleCreateComment}
+            />}
         </div>
     )
 

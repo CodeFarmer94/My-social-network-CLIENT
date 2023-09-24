@@ -5,10 +5,9 @@ import { useMutation, useQueryClient } from "react-query";
 import { IoSend } from 'react-icons/io5'
 import { useState, useEffect, useRef } from "react";
 import './createComment.css'
-export default function CreateComment({postId, parentId}){
+export default function CreateComment({postId, parentId, toggleCreateComment}){
 
     const [ showCommentPosted, setShowCommentPosted ] = useState(false);
-    const [ showCreateComment, setShowCreateComment ] = useState(false); 
     const queryClient = useQueryClient();
     const schema = yup.object().shape({
         content: yup.string().required(),
@@ -41,15 +40,19 @@ export default function CreateComment({postId, parentId}){
         } 
     }
     const { mutate, isLoading, isError, error } = useMutation({mutationFn: createComment, onSuccess: () => {
-        queryClient.invalidateQueries('postComments');
+        queryClient.invalidateQueries('userPosts');
         reset();
+        // If the comment is a reply, close the create comment form
+        if(parentId !== null) {
+            toggleCreateComment();
+        }
+        // If it is a main comment, show the placeholder posted message
         setShowCommentPosted(true);
         setTimeout(() => {
             setShowCommentPosted(false);
         }, 3000);
     }});
     const onSubmit = (data) => {
-        console.log(data)
         mutate(data);
     }
     

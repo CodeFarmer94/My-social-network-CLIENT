@@ -44,10 +44,10 @@ export default function CommentLike ({ commentId, isLiked }) {
 
 
     const { mutate: mutateAddLike, isLoading, isError, error } = useMutation({mutationFn: addLikeComment, onSuccess: () => {
-        queryClient.invalidateQueries('postComments')}
+        queryClient.invalidateQueries('userPosts')}
     });
     const { mutate: mutateRemoveLike } = useMutation({mutationFn: removeLikeComment, onSuccess: () => {
-        queryClient.invalidateQueries('postComments')}
+        queryClient.invalidateQueries('userPosts')}
     });
     const toogleLike = () => {
         isLiked ? mutateRemoveLike() : mutateAddLike();
@@ -56,7 +56,7 @@ export default function CommentLike ({ commentId, isLiked }) {
     return(
         <div>
             { isLiked ?
-                <p className="footer-btn liked" onClick={toogleLike}><span><FaHeart/></span>Liked</p>
+                <p className="footer-btn liked" onClick={toogleLike}><span><FaHeart/></span>Like</p>
                 : 
                 <p className="footer-btn" onClick={toogleLike}>Like</p>
             }

@@ -1,8 +1,8 @@
-import { useQuery } from 'react-query';
+
 import { Image } from 'cloudinary-react';
 import './comment.css';
 import CommentFooter from './commentFooter/CommentFooter';
-import { useState } from 'react';
+
 
 
 export default function Comment({ comment}) {
@@ -26,8 +26,8 @@ export default function Comment({ comment}) {
             <CommentFooter postId={postId} parentId={id} commentId = {id} commentLikes = { commentLikes}/>
             
                 {children && children.map(child => (
-                <div className='subcomments'>
-                    <div key={child.id}>
+                <div className='subcomments' key={child.id}>
+                    <div >
                         <Comment
                             comment={child}
                         /></div>

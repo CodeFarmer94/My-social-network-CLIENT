@@ -3,11 +3,11 @@
     margin-left:1rem;
     font-size: 0.8rem;
     font-weight: bold;
-    color: rgba(14, 10, 135, 0.651);
+    color: var(--gray-text);
     cursor: pointer;
 }
 .footer-btn:hover{
-   color: rgba(19, 13, 174, 0.651);
+   color: var(--blue-text);
     text-decoration: underline;
 }
 

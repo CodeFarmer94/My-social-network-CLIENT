@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+
 import ProfileInfo from './profileInfo/ProfileInfo';
 import ProfileHeader from './profileHeader/ProfileHeader';
-import CreatePost from '../post/createPost/CreatePost';
+import FriendList from '../friendList/FriendList';
 import { useQuery } from 'react-query';
+import { useEffect } from 'react';
 import './profile.css';
 import { selectUser, setUser } from '../../features/userSlice';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import PostList from '../post/postList/PostList';
+
 
 export default function Profile(){
 
@@ -18,7 +20,7 @@ export default function Profile(){
  const fullName = `${user.firstName} ${user.lastName}`
  const {userId} = useParams()
  const dispatch = useDispatch()
- const {data} = useQuery('myUser', async () => {
+ const {data, refetch} = useQuery('user', async () => {
     try{
       const res = await fetch(`http://localhost:8030/user/id/${userId}` , {
         method: 'GET',
@@ -34,18 +36,23 @@ export default function Profile(){
     } catch(error){
       console.log(error)
     }
-  })
+  }, { enabled: false})
+  // Use a useEffect to refetch the query when userId changes
+ useEffect(() => {
+    refetch(); // Call refetch to fetch the data when userId changes
+  }, [userId]);
 
 
 
   return (
     <div className="profile">
       <>
-       <ProfileHeader myUser={user}/>
+       <ProfileHeader user={user}/>
       </>
       <main>
         <div className='main-left'>
           <ProfileInfo />
+          <FriendList user={user}/>
         </div>
         <div className='main-right'>
           <PostList authorId={authorId} authorName={fullName}/>

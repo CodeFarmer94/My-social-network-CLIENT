@@ -12,7 +12,7 @@ export default function PostLike({ postLikes, postId }) {
     const myUser = useSelector(selectMyUser);
     const myUserId = myUser.id;
     const [isLiked, setIsLiked] = useState(false);
-
+    
     useEffect(() => {
         const bool = postLikes?.some(like => like.userId === myUserId);
         setIsLiked(bool);
@@ -73,16 +73,16 @@ export default function PostLike({ postLikes, postId }) {
 
     
     return (
-        <div>
+        <>
            { isLiked ? 
-           <button className="like-btn" onClick={handleLikeButtonClick}>
-                <AiOutlineLike />
+           <button className="like-btn liked" onClick={handleLikeButtonClick}>
+                <AiFillLike className='post-icon'/>
                         Like
             </button> : 
              <button className="like-btn" onClick={handleLikeButtonClick}>
-                <AiFillLike />
-                        Liked
+                <AiOutlineLike className='post-icon'/>
+                        Like
             </button>}
-        </div>
+        </>
      )
 }

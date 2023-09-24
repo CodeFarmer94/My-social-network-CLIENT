@@ -1,43 +1,77 @@
-import './profileHeader.css'
-import profilePic from '../../../images/profile-pic.jpg';
+import './profileHeader.css';
+import FriendRequestBtn from '../../friendRequest/FriendRequestBtn';
 import bgPic from '../../../images/bg-pic.jpg';
 import ProfileNavbar from '../profileNavbar/ProfileNavbar';
 import AvatarModal from '../../modals/avatarModal/AvatarModal';
+import FriendRequestModal from '../../modals/friendReqModal/FriendRequestModal';
+import OpenChat from '../../messenger/OpenChat';
 import { Image } from 'cloudinary-react';
-import { useState } from 'react';
-import { useLocation} from 'react-router-dom';
-export default function ProfileHeader({myUser}) {
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-    const [showAvatarModal, setShowAvatarModal] = useState(false);
-
-    const location = useLocation();
-    const path = location.pathname.split('/')[2];
-
-    // only show avatar modal if user is on their own profile
-    const handleCloseAvatarModal = () => path === 'me' && setShowAvatarModal(false);
-    const handleShowAvatarModal = () => path === 'me' && setShowAvatarModal(true);
-    
-    const { firstName, lastName, friends, avatarPublicId } = myUser;
-    const fullName = `${firstName} ${lastName}`;
+export default function ProfileHeader({ user }) {
+  const [showAvatarModal, setShowAvatarModal] = useState(false);
+  const [showFriendRequestModal, setShowFriendRequestModal] = useState(false);
+  const [areReqPending, setAreReqPending] = useState(false);
 
 
-    return(
-        <div className="header-box">
-        <header className='flex-column'>
-          <div className="header-info-box" style={{backgroundImage:`url(${bgPic})`}}>
-              <div className='header-info'>
-                <Image className='avatar' cloudName='dnq3ef4tj' publicId={avatarPublicId} onClick={handleShowAvatarModal}/>
-                <div className='flex-column'>
-                   <h2>{ fullName }</h2>
-                    <p>{friends} friends</p>
-                </div>
-               
-              </div>
+
+  // check if there are any pending friend requests
+  useEffect(() => {
+    if (!user) return;
+    const findReceived = user.user?.receivedFriendRequests.find(
+      (request) => request.receiverId === user.id && request.status === 'pending'
+    );
+    if (findReceived) {
+      setAreReqPending(true);
+    } else {
+      setAreReqPending(false);
+    }
+  }, [user]);
+
+  const location = useLocation();
+  const path = location.pathname.split('/')[2];
+  
+  // only show avatar modal if the user is on their own profile
+  const handleCloseAvatarModal = () => path === 'me' && setShowAvatarModal(false);
+  const handleShowAvatarModal = () => path === 'me' && setShowAvatarModal(true);
+
+
+  
+  const handleCloseFriendRequestModal = () => setShowFriendRequestModal(false);
+  const handleShowFriendRequestModal = () => setShowFriendRequestModal(true);
+
+  const { firstName, lastName, avatarPublicId, id } = user;
+  const fullName = `${firstName} ${lastName}`;
+
+  if(!user) return (<div>Loading...</div>)
+  
+  const receivedFriendRequests = user?.user?.receivedFriendRequests;
+  const sentFriendRequests = user?.user?.sentFriendRequests;
+  const totalFriendRequests = receivedFriendRequests?.length + sentFriendRequests?.length;
+  
+  return (
+    <div className="header-box">
+      <header className="flex-column">
+        <div className="header-info-box" style={{ backgroundImage: `url(${bgPic})` }}>
+          <div className="header-info">
+            <Image className="avatar" cloudName="dnq3ef4tj" publicId={avatarPublicId} onClick={handleShowAvatarModal} />
+            <div className="flex-column">
+              <h2>{fullName}</h2>
+              <p>{Number.isNaN(totalFriendRequests) ? '0' : totalFriendRequests} friends</p>
+              {/* only show friend request button if the user is on another user's profile */}
+              {path === 'user' && <FriendRequestBtn receiverId={id} />}
+              {path === 'user' && <OpenChat user={user} />}
+              {/* only show pending requests if the user is on their own profile */}
+              {path === 'me' && areReqPending && <button className="btn btn-primary" onClick={handleShowFriendRequestModal}
+              >Friend request pending
+              </button>}
+            </div>
           </div>
-          <ProfileNavbar />
-        </header>
-        <AvatarModal show={showAvatarModal} handleClose={ handleCloseAvatarModal}  myUserId={ myUser.id} />
-        
-      </div>
-    )
+        </div>
+      </header>
+      <AvatarModal show={showAvatarModal} handleClose={handleCloseAvatarModal} myUserId={id} />
+      <FriendRequestModal show={showFriendRequestModal} handleClose={handleCloseFriendRequestModal} receivedFriendRequests={user.user?.receivedFriendRequests} />
+    </div>
+  );
 }

@@ -1,0 +1,22 @@
+.friend-req-modal .user-profile{
+    display: flex;
+    gap:1rem;
+    flex-direction: column;
+}
+.friend-req-modal .user-profile-info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.friend-req-modal .btns{
+    display: flex;
+    align-items: center;
+   
+    gap: 0.5rem;
+}
+
+.friend-req-modal .user-profile{
+    padding: 1rem 0;
+    border-top: 2px dotted gray
+}

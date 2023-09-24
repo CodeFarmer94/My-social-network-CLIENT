@@ -7,7 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { BrowserRouter as Router} from 'react-router-dom';
-
+import { QueryClient, QueryClientProvider } from 'react-query';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
@@ -15,10 +15,11 @@ root.render(
   <React.StrictMode>
     
     <Provider store={store}>
-  
+      <QueryClientProvider client={new QueryClient()}>
         <Router>
           <App />
         </Router>
+      </QueryClientProvider>
      
     </Provider>
   </React.StrictMode>

@@ -4,12 +4,13 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {BsBoxArrowInUpRight} from 'react-icons/bs'
+import { useQueryClient } from 'react-query';
+import { BsBoxArrowInUpRight } from 'react-icons/bs';
 import * as yup from 'yup';
 
 export default function LoginForm() {
 
-  const [error, setError] = useState('');
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const schema = yup.object().shape({
     username: yup.string().email().required(),
@@ -30,39 +31,28 @@ export default function LoginForm() {
       const data = await res.json();
       if(res.ok){
         navigate('/profile/me')
-      } else {
-        setError(data.message)
       }
     } catch (error) {
       console.log(error.message);
     }
   };
-  const { mutate } = useMutation(postLogin);
+  const { mutate, onSuccess } = useMutation({mutationFn: postLogin, onSuccess: () => queryClient.invalidateQueries('myUser')});
   const onSubmit  = (data, e) => {
     e.preventDefault();
     mutate(data);
   };
   
-  const handleChange = (e)  => {
-    const {name, value} = e.target
-    if(name === 'email'){
-      setEmail(value)
-    } else {
-      setPassword(value)
-    }
-    setError('')
-  }
+  
   
   return (
     <div className='flex-column wid-100 center '>
       <form onSubmit={handleSubmit(onSubmit)} className='wid-100 login-form'>
-       {error && <p className='error'>{error}</p>}
+      
         <p className="error">{errors.email?.message}</p>
         <input
           name="email" // Add name attribute
           placeholder="Inserisci la tua e-mail"
           className="pad-1 mar-05-auto bor-rad-5 wid-100 f-size-12 block "
-          onChange= {handleChange}
           required
           {...register('username')}
         />
@@ -71,7 +61,6 @@ export default function LoginForm() {
           name="password" // Add name attribute
           placeholder="Inserisci la tua password"
           className="pad-1 mar-05-auto bor-rad-5 wid-100 f-size-12 block"
-          onChange={handleChange}
           required
           {...register('password')}
         />

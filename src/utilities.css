@@ -150,4 +150,20 @@ background: rgb(4, 4, 36)
 .pos-relative{
     position: relative;
 }
+#md-profile-pic{
+    border-radius: 50%;
+    width: 3.2rem;
+    height: 3.2rem;
+}
 
+
+:root {
+    --gray-text: rgb(83, 87, 118); /* Define the color value */
+    --purple-text: rgba(53, 48, 186, 0.651);
+  }
+
+  a{
+    text-decoration: none !important;
+    
+    
+  }

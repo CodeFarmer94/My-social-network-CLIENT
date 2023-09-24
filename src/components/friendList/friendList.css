@@ -1,0 +1,42 @@
+.friends-box{
+
+    background-color: white;
+    padding: 1rem;
+    border-radius: 3px;
+    
+}
+.friends-box h2{
+
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.friendlist-box{
+
+    display: flex;
+    flex-direction: row;
+    gap:0.5rem;
+}
+
+.friendlist-box h6{
+
+    margin-bottom:0.5rem;
+}
+
+#friendlist-pic{
+
+    width: 75px;
+    height: 75px;
+    margin: 0.1rem auto;
+    display: block;
+}
+.friend-box{
+    margin-top: 0.5rem;
+    width: 80px;
+}
+.friend-box h6{
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+}

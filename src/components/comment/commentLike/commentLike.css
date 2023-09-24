@@ -1,5 +1,5 @@
 .liked{
-    color:rgb(2, 203, 102) !important
+    color:var(--purple-text) !important
 }
 .liked span{
     color: red;

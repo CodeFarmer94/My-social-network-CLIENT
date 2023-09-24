@@ -6,10 +6,15 @@ import { useMutation, useQueryClient } from 'react-query'; // Import useQueryCli
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import {Image} from 'cloudinary-react/'
+import { useSelector } from 'react-redux';
+import { selectMyUser } from '../../../features/myUserSlice';
+
 
 export default function PostModal({ show, handleClose }) {
   const queryClient = useQueryClient(); // Initialize the queryClient
-
+  const myUser = useSelector(selectMyUser);
+  const avatarPublicId = myUser.avatarPublicId;
   const schema = yup.object().shape({
     content: yup.string().required(),
   });
@@ -56,7 +61,7 @@ export default function PostModal({ show, handleClose }) {
         <Modal.Body>
           <div className="post-form">
             <header>
-              <img src={profilePic} alt="profile-pic" id='sl-profile-pic' />
+            <Image cloudName='dnq3ef4tj' publicId={avatarPublicId} id='sl-profile-pic' />
               <input
                 name="content"
                 type="text"

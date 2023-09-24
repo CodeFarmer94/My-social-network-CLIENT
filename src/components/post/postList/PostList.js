@@ -2,11 +2,11 @@ import { useQuery } from "react-query";
 import { useEffect } from "react";
 import Post from "./../Post";
 import { useDispatch} from 'react-redux';
-import { setMyUserPosts } from "../../../features/myUserSlice";
+
 
 export default function PostList({ authorId }) {
 
-    const dispatch = useDispatch();
+    
    
     const getUserPosts = async () => {
         if (!authorId) return console.log('No authorId');

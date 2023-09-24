@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 import ProfileInfo from './profileInfo/ProfileInfo';
 import ProfileHeader from './profileHeader/ProfileHeader';
 import CreatePost from '../post/createPost/CreatePost';
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import PostList from '../post/postList/PostList';
+import FriendList from '../friendList/FriendList';
 
 export default function MyProfile(){
 
@@ -16,8 +17,9 @@ export default function MyProfile(){
  const myUser = useSelector(selectMyUser)
  const authorId = myUser.id
  const fullName = `${myUser.firstName} ${myUser.lastName}`
- const {userId} = useParams()
+
  const dispatch = useDispatch()
+ 
  const {data} = useQuery('myUser', async () => {
     try{
       const res = await fetch(`http://localhost:8030/user/me` , {
@@ -41,11 +43,12 @@ export default function MyProfile(){
   return (
     <div className="profile">
       <>
-       <ProfileHeader myUser={myUser}/>
+       <ProfileHeader user={myUser}/>
       </>
       <main>
         <div className='main-left'>
           <ProfileInfo />
+          <FriendList user={myUser}/>
         </div>
         <div className='main-right'>
           <CreatePost/>
