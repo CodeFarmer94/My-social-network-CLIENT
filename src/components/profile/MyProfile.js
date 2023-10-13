@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import PostList from '../post/postList/PostList';
 import FriendList from '../friendList/FriendList';
-
+import IsLoading from '../isLoading/IsLoading';
 export default function MyProfile(){
 
  const navigate = useNavigate()
@@ -20,7 +20,7 @@ export default function MyProfile(){
 
  const dispatch = useDispatch()
  
- const {data} = useQuery('myUser', async () => {
+ const {data, isLoading } = useQuery('myUser', async () => {
     try{
       const res = await fetch(`http://localhost:8030/user/me` , {
         method: 'GET',
@@ -39,7 +39,12 @@ export default function MyProfile(){
   })
 
 
-
+  if(isLoading) {
+    return(
+      <IsLoading />
+    )
+  }
+  
   return (
     <div className="profile">
       <>
@@ -47,7 +52,7 @@ export default function MyProfile(){
       </>
       <main>
         <div className='main-left'>
-          <ProfileInfo />
+          <ProfileInfo user={myUser}/>
           <FriendList user={myUser}/>
         </div>
         <div className='main-right'>

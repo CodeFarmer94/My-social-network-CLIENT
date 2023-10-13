@@ -157,6 +157,17 @@ background: rgb(4, 4, 36)
 }
 
 
+.blue-button{
+    background: rgb(13,19,39);
+    background: linear-gradient(94deg, rgb(22, 61, 191) 0%, rgb(17, 35, 165) 53%); 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.blue-button:hover{
+    outline: 3px solid rgb(17, 35, 165);
+    color:white !important;
+   
+}
 :root {
     --gray-text: rgb(83, 87, 118); /* Define the color value */
     --purple-text: rgba(53, 48, 186, 0.651);
@@ -164,6 +175,6 @@ background: rgb(4, 4, 36)
 
   a{
     text-decoration: none !important;
-    
+    color: white !important;
     
   }

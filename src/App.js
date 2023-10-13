@@ -4,10 +4,12 @@ import "./utilities.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from './components/profile/Profile';
 import Home from './components/home/Home';
+import Navbar from './components/navbar/Navbar';
 import AccessPage from './components/access/AccessPage';
 import MyProfile from './components/profile/MyProfile';
-import Messanger from './components/messenger/Messanger';
+import Messanger from './components/messenger/Messenger';
 import SocketConnection from './components/messenger/SocketConnection';
+import IsLoading from './components/isLoading/IsLoading';
 import { Route, Routes} from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { selectMyUser } from './features/myUserSlice';
@@ -15,13 +17,15 @@ import { useSelector } from 'react-redux';
 import { setMyUser } from './features/myUserSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+
+
 function App() {
   
   const dispatch = useDispatch();
   const myUser = useSelector(selectMyUser);
   const navigate = useNavigate()
 
- const {data} = useQuery('myUser', async () => {
+ const {data, isLoading} = useQuery('myUser', async () => {
     try{
       const res = await fetch(`http://localhost:8030/user/me` , {
         method: 'GET',
@@ -39,22 +43,34 @@ function App() {
     }
   })
   
-   // Render SocketConnection component only if the user is authenticated
-   const renderSocketConnection = myUser ? <SocketConnection /> : null;
+  if(isLoading) {
+    return(
+      <IsLoading />
+    )
+  }
+   
+
   return (
     <div className="App">
-      {renderSocketConnection}
-      <Routes>  
-        <Route path="/messanger" element={<Messanger />} />
-        <Route path="/profile/user/:userId" element={<Profile />} />
-        <Route path="/profile/me" element={<MyProfile />} />
-
+      <SocketConnection user={myUser} />
+      <Messanger />
+      <Routes>
+        <Route
+          path="/profile/*"
+          element={
+            <>
+              <Navbar />
+              <Routes>
+                <Route path="/user/:userId" element={<Profile />} />
+                <Route path="/me" element={<MyProfile />} />
+              </Routes>
+            </>
+          }
+        />
         <Route path="/access/*" element={<AccessPage />} />
         <Route path="/" element={<Home />} />
-        <Route path = '/messanger' element = {<Messanger/>} />
       </Routes>
     </div>
   );
 }
-
 export default App;

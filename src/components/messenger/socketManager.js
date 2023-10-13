@@ -3,18 +3,19 @@ import io from "socket.io-client";
 
 const socketManager = {
   sockets: {},
-  createSocketConnection: (room, userId) => {
-    if (!socketManager.sockets[room]) {
-      socketManager.sockets[room] = io.connect("http://localhost:8030", {
+  createSocketConnection: (userId) => {
+    if(!userId) return console.log('User not found')
+    if (!socketManager.sockets[userId]) {
+      socketManager.sockets[userId] = io.connect("http://localhost:8030", {
         transports: ["websocket"], query: { userId: userId }
       });
     }
-    return socketManager.sockets[room];
+    return socketManager.sockets[userId];
   },
-  closeSocketConnection: (room) => {
-    if (socketManager.sockets[room]) {
-      socketManager.sockets[room].disconnect();
-      delete socketManager.sockets[room];
+  closeSocketConnection: (userId) => {
+    if (socketManager.sockets[userId]) {
+      socketManager.sockets[userId].disconnect();
+      delete socketManager.sockets[userId];
     }
   },
 };

@@ -8,6 +8,8 @@ export default function RegisterForm() {
     
     const navigate = useNavigate();
     const [error, setError] = useState('');
+
+    // Register mutation
     const postRegister = async (body) => {
         try {
             const res = await fetch('http://localhost:8030/register', {
@@ -26,6 +28,9 @@ export default function RegisterForm() {
             console.log(error.message);
         }
     }
+    const { mutate } = useMutation(postRegister);
+    
+    // Form validation via yup
     const schema = yup.object().shape({
         email: yup.string().email().required(),
         password: yup.string().min(8, 'Password must be at least 8 characters').required(),
@@ -33,20 +38,24 @@ export default function RegisterForm() {
         firstName: yup.string().required(),
         lastName: yup.string().required(),
     })
+
+    // React Hook Form
     const { register, handleSubmit, formState: {errors}} = useForm({
         resolver: yupResolver(schema)
     });
+
+    // Submit form
     const onSubmit = (data) => {
         mutate(data);
     }
-    const { mutate } = useMutation(postRegister);
+    
     
     return(
         <div className='flex-column wid-100 center'>
       <form className='wid-100' onSubmit={handleSubmit(onSubmit)}>
         <p className="error">{errors.email?.message}</p>
         <input
-          name="email" // Add name attribute
+          name="email" 
           placeholder="Inserisci la tua e-mail"
           className="pad-1 mar-05-auto bor-rad-5 wid-80 f-size-12 block " 
           required
@@ -55,7 +64,7 @@ export default function RegisterForm() {
         />
         <p className="error">{errors.password?.message}</p>
         <input
-          name="password" // Add name attribute
+          name="password" 
           placeholder="Inserisci la tua password"
           className="pad-1 mar-05-auto bor-rad-5 wid-80 f-size-12 block"
           type= 'password'
@@ -64,7 +73,7 @@ export default function RegisterForm() {
         />
         <p className="error">{errors.confirmPassword?.message}</p>
         <input
-          name="confirmPassword" // Add name attribute
+          name="confirmPassword" 
           placeholder="Conferma la tua password"
           className="pad-1 mar-05-auto bor-rad-5 wid-80 f-size-12 block"
           {...register('confirmPassword')}

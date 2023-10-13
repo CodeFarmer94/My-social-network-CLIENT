@@ -1,7 +1,7 @@
 .settings-group{
     display: flex;
     gap:0.5rem;
-   
+   flex-direction: column;
     width: 100%;
 }
 .group-title{
@@ -10,6 +10,9 @@
 .settings-group-container{
     padding-bottom:1.5rem;
     border-bottom: 1px solid gray;
+    display:fleX;
+    flex-direction: column;
+    gap:0.2rem;
 }
 .settings-group-container input{
     
@@ -26,6 +29,9 @@
     min-width: 5rem;
     font-weight: bold;
    
+}
+.settings-btns-group{
+    margin-top:0.5rem;
 }
 #show-btn{
     border-top-left-radius: 5px;
@@ -54,14 +60,11 @@
     min-width:90%;
     font-size: 1.1rem;
     color: black;
-    display: inline-block;
-    padding: 0 1rem;
+    padding: 0.2rem 1rem;
     display: block;
-    margin-bottom: 0.5rem;
     border-radius: 5px;
-   
-   
     background-color: whitesmoke;
+
    
 }
 .setting-head{

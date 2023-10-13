@@ -9,17 +9,23 @@ import { BsBoxArrowInUpRight } from 'react-icons/bs';
 import * as yup from 'yup';
 
 export default function LoginForm() {
-
+  
+  
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  // Form validation via yup
   const schema = yup.object().shape({
     username: yup.string().email().required(),
     password: yup.string().min(8, 'Password must be at least 8 characters').required(),
   })
+
+  // React Hook Form
   const { register, handleSubmit, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
 
+  // Login mutation
   const postLogin = async (body) => {
     try {
       const res = await fetch('http://localhost:8030/login', {

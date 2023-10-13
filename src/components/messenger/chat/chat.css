@@ -1,0 +1,108 @@
+.chat-window{
+    background-color: white;
+    border:  2px solid rgb(243, 242, 242);
+    height: 350px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+   
+}
+::-webkit-scrollbar {
+    width: 10px;
+  }
+.chat-body {
+    flex-grow: 1;
+    overflow-y: scroll;
+       
+  }
+.chat-header{
+    border-bottom: 1px solid gray;
+    padding: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    position: sticky;
+    z-index: 1;
+    background-color: rgb(216, 222, 246);
+    top:0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.chat-header :nth-child(2) {
+    flex-grow: 1;
+}
+.chat-footer{
+    display: flex;
+}
+.chat-footer input{
+    flex-grow: 1;
+    background-color: rgb(237, 236, 236);
+    border: none;
+    border-radius: 5px;
+    margin:0.5rem;
+    padding: 0 0.5rem;
+}
+.chat-footer input:focus{
+    outline: none;
+    border: 1px solid rgb(169, 168, 168)
+}
+
+.chat-header p{
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.9rem;
+    color: rgb(106, 106, 106);
+    font-weight:500;
+    letter-spacing: 0.2px;
+}
+.dot{
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+}
+.red{
+    background-color: rgb(168, 168, 168);
+}
+.green{
+    background-color: green;
+}
+.message{
+    margin:0.5rem;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.msg-time{
+    font-size: 0.6rem;
+    color: rgb(106, 106, 106);
+    font-weight:500;
+    letter-spacing: 0.2px;
+    margin-left: 0.5rem;
+}
+.message-content p{
+    width: fit-content;
+    padding: 0.2rem 0.5rem;
+    border-radius:10px;
+    margin: 0.1rem;
+    background-color: rgb(244, 244, 244)
+}
+.message .author p{
+    background-color: rgba(31, 25, 198, 0.651);
+    color: white;
+    display: flex;
+    justify-content: end;
+    text-align: right;
+}
+.message .author{
+    display: flex;
+    justify-content: end;
+    text-align: right;
+}
+
+.meta-author {
+    text-align: right;
+}

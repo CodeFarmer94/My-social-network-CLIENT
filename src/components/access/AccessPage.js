@@ -7,11 +7,16 @@ import { useLocation } from 'react-router';
 import { Routes, Route } from 'react-router-dom';
 
 export default function AccessPage() {
+
+  // Local State
   const [displayText, setDisplayText] = useState(true);
   const [textIndex, setTextIndex] = useState(0);
   const [delay, setDelay] = useState(5);
+
+  // Get the current location
   const location = useLocation();
 
+  // Set the delay for the text slide
   useEffect(() => {
     setDelay(displayText ? 4000 : 1000);
     setTimeout(() => {
@@ -19,6 +24,7 @@ export default function AccessPage() {
     }, delay);
   }, [displayText]);
 
+  // Change the text when the displayText state changes
   useEffect(() => {
     if (!displayText) {
       setTextIndex((prevTextIndex) => (prevTextIndex + 1) % textArr.length);

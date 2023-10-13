@@ -1,0 +1,12 @@
+.isLoading{
+
+    width: 100vw;
+    height: 100vh;
+    background-color: blue;
+    display: flex;
+}
+
+.spinner-container{
+    margin: auto;
+    color: white;
+}

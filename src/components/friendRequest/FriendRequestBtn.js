@@ -17,7 +17,6 @@ export default function FriendRequestBtn({ receiverId }) {
 
     useEffect(() => {
         if(!user) return
-        // 
         const findSent = user.sentFriendRequests.find(request => request.receiverId === receiverId)
         const findReceived = user.receivedFriendRequests.find(request => request.senderId === receiverId)
         if (findSent) {
@@ -64,11 +63,12 @@ export default function FriendRequestBtn({ receiverId }) {
     }});
 
     const handleSendRequest = () => {
+        if(requestStatus === 'accepted' || requestStatus === 'declined') return
         mutate({ senderId, receiverId });
     }
 
     return(
-        <button className='btn btn-primary' onClick={handleSendRequest} disabled= {requestStatus !== 'none'}>
+        <button className='btn friend-btn blue-button' onClick={handleSendRequest}>
             { requestStatus === 'none' && 'Add friend' }
             { requestStatus === 'sent' && 'Friend request sent' }
             { requestStatus === 'received' && 'Accept friend request' }

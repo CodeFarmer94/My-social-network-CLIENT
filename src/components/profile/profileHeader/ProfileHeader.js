@@ -1,7 +1,6 @@
 import './profileHeader.css';
 import FriendRequestBtn from '../../friendRequest/FriendRequestBtn';
 import bgPic from '../../../images/bg-pic.jpg';
-import ProfileNavbar from '../profileNavbar/ProfileNavbar';
 import AvatarModal from '../../modals/avatarModal/AvatarModal';
 import FriendRequestModal from '../../modals/friendReqModal/FriendRequestModal';
 import OpenChat from '../../messenger/OpenChat';
@@ -35,20 +34,21 @@ export default function ProfileHeader({ user }) {
   // only show avatar modal if the user is on their own profile
   const handleCloseAvatarModal = () => path === 'me' && setShowAvatarModal(false);
   const handleShowAvatarModal = () => path === 'me' && setShowAvatarModal(true);
-
-
   
   const handleCloseFriendRequestModal = () => setShowFriendRequestModal(false);
   const handleShowFriendRequestModal = () => setShowFriendRequestModal(true);
 
-  const { firstName, lastName, avatarPublicId, id } = user;
-  const fullName = `${firstName} ${lastName}`;
+
 
   if(!user) return (<div>Loading...</div>)
-  
-  const receivedFriendRequests = user?.user?.receivedFriendRequests;
-  const sentFriendRequests = user?.user?.sentFriendRequests;
-  const totalFriendRequests = receivedFriendRequests?.length + sentFriendRequests?.length;
+
+  const { firstName, lastName, avatarPublicId, id } = user;
+  const fullName = `${firstName} ${lastName}`;
+  const receivedFriendRequests = user.user?.receivedFriendRequests;
+  const sentFriendRequests = user.user?.sentFriendRequests;
+  const totalFriendRequests = receivedFriendRequests?.concat(sentFriendRequests)
+  const totalAcceptedFriendRequests = totalFriendRequests?.filter((request) => request.status === 'accepted')
+ 
   
   return (
     <div className="header-box">
@@ -56,17 +56,23 @@ export default function ProfileHeader({ user }) {
         <div className="header-info-box" style={{ backgroundImage: `url(${bgPic})` }}>
           <div className="header-info">
             <Image className="avatar" cloudName="dnq3ef4tj" publicId={avatarPublicId} onClick={handleShowAvatarModal} />
-            <div className="flex-column">
-              <h2>{fullName}</h2>
-              <p>{Number.isNaN(totalFriendRequests) ? '0' : totalFriendRequests} friends</p>
+            
+              <div className='profile-header-column'>
+                  <h2>{fullName}</h2>
+                  <p>{Number.isNaN(totalAcceptedFriendRequests?.length) ? '0' : totalAcceptedFriendRequests?.length} friends</p>
+              </div>
+             
               {/* only show friend request button if the user is on another user's profile */}
-              {path === 'user' && <FriendRequestBtn receiverId={id} />}
-              {path === 'user' && <OpenChat user={user} />}
-              {/* only show pending requests if the user is on their own profile */}
-              {path === 'me' && areReqPending && <button className="btn btn-primary" onClick={handleShowFriendRequestModal}
-              >Friend request pending
-              </button>}
-            </div>
+              <div className='profile-header-buttons'>
+                      {path === 'user' && <FriendRequestBtn receiverId={id} />}
+                      {path === 'user' && <OpenChat user={user} />}
+                      {/* only show pending requests if the user is on their own profile */}
+                      {path === 'me' && areReqPending && <button className="btn btn-primary" onClick={handleShowFriendRequestModal}
+                      >Friend request pending
+                      </button>}
+              </div>
+            
+        
           </div>
         </div>
       </header>

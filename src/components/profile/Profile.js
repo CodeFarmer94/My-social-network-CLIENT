@@ -10,17 +10,24 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import PostList from '../post/postList/PostList';
-
+import IsLoading from '../isLoading/IsLoading';
 
 export default function Profile(){
 
+ // Variables
  const navigate = useNavigate()
+ const dispatch = useDispatch()
+
+ // Redux State
  const user = useSelector(selectUser)
  const authorId = user.id
  const fullName = `${user.firstName} ${user.lastName}`
+
+ // Params 
  const {userId} = useParams()
- const dispatch = useDispatch()
- const {data, refetch} = useQuery('user', async () => {
+
+  // Fetch user data
+ const {data, refetch, isLoading } = useQuery('user', async () => {
     try{
       const res = await fetch(`http://localhost:8030/user/id/${userId}` , {
         method: 'GET',
@@ -37,12 +44,18 @@ export default function Profile(){
       console.log(error)
     }
   }, { enabled: false})
+
+  
   // Use a useEffect to refetch the query when userId changes
  useEffect(() => {
     refetch(); // Call refetch to fetch the data when userId changes
   }, [userId]);
 
-
+  if(isLoading) {
+    return(
+      <IsLoading />
+    )
+  }
 
   return (
     <div className="profile">
@@ -51,7 +64,7 @@ export default function Profile(){
       </>
       <main>
         <div className='main-left'>
-          <ProfileInfo />
+          <ProfileInfo user={user}/>
           <FriendList user={user}/>
         </div>
         <div className='main-right'>

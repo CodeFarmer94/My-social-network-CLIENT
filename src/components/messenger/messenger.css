@@ -1,0 +1,19 @@
+.messanger-container{
+
+    position: fixed;
+    bottom: 0;
+    right: 100px;
+    z-index: 999;
+    display: flex;
+}
+.open-chat-btn {
+    display: block;
+    margin: auto;
+    background-color: rgba(15, 10, 144, 0.651);
+    color: white;
+    width: 7rem;
+    border-radius: 5px;
+    padding: 0.2rem;
+    border: none;
+    font-weight: 500;
+} 

@@ -56,10 +56,10 @@ function SettingsGroup({
       {tempMyUser[propName] && (
         <div className='settings-group'>
           <div className='wid-100'> 
-            <h7 className='detail-value'>
+            <h6 className='detail-value'>
                  {tempMyUser[propName]}
-            </h7>
-            <h7>
+            </h6>
+            <div className='settings-btns-group'>
               <button 
               onClick = {handleShowSetting}
               className={ tempMyUserSettings[settingName] ? 'setting-checked' : 'setting-disabled'}
@@ -70,7 +70,7 @@ function SettingsGroup({
               <button onClick={handleShowAddSetting} id='edit-btn'>
                 Edit
               </button>
-            </h7>
+            </div>
           </div>
         </div>
       )}

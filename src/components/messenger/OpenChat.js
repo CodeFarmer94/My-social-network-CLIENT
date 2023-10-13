@@ -1,21 +1,27 @@
 
-import socketManager from "./socketManager";
+
 import { addChat } from "../../features/messengerSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
+
+
 export default function OpenChat({ }) {
+    const dispatch = useDispatch();
+    const user = useSelector(selectUser);
 
-    const room = "1";
-    const socket = socketManager.sockets[room];
 
-  const joinRoom = () => {
-      console.log('join room')
-      socket.emit("join_room", room);
+  const handleOpenChat = () => {
+   
+      dispatch(addChat({ recipient: user}));
   };
 
+
+
   return (
-    <div className="open-chat-btn">
-        <button className="primary" onClick={joinRoom}>Open Chat</button>
-     </div>
+    
+        <button className="open-chat-btn blue-button" onClick={handleOpenChat}>Chat</button>
+    
   );
 }
 
